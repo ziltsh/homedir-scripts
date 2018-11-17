@@ -14,32 +14,38 @@ DESTDIR = debian
 # from the environment, hopefully the users homedir
 HOMEDIR = ${DESTDIR}${HOME}
 AVAILABLE_DIR =	${DESTDIR}/${HOME}/.bashrc-avail.d
-ENABLED_DIR =		${DESTDIR}/${HOME}/.bashrc-enabled.d
+ENABLED_DIR = ${DESTDIR}/${HOME}/.bashrc-enabled.d
 
 default:
 	make -s usage
 .PHONY: default
 
 i: install
-install: install_dir install_file
+install: install_dir install_file link_file
+	make -s install_instructions printtree
 install_dir:
 	-${INSTALL} ${I_OPT} -m 0750 -d ${DESTDIR}
 	-${INSTALL} ${I_OPT} -d ${HOMEDIR}
 	${INSTALL} ${I_OPT} -m 0750 -d ${AVAILABLE_DIR}
+	${INSTALL} ${I_OPT} -m 0750 -d ${ENABLED_DIR}
 install_file:
 	${INSTALL} bashrc.common ${HOMEDIR}/.bashrc.common
 	${INSTALL} avail.d/bak ${AVAILABLE_DIR}/bak
 	${INSTALL} avail.d/cvs ${AVAILABLE_DIR}/cvs
 	${INSTALL} avail.d/ssh-agent ${AVAILABLE_DIR}/ssh-agent
 	${INSTALL} avail.d/zz-tmux-list-sessions ${AVAILABLE_DIR}/zz-tmux-list-sessions
-	make -s install_instructions printtree
+link_file:
+	-ln -sv ../.bashrc-avail.d/bak ${ENABLED_DIR}/bak
+	-ln -sv ../.bashrc-avail.d/ssh-agent ${ENABLED_DIR}/ssh-agent
+	-ln -sv ../.bashrc-avail.d/zz-tmux-list-sessions ${ENABLED_DIR}/zz-tmux-list-sessions
 .PHONY: i install install_dir install_file
 
 u: uninstall
-uninstall: uninstall_file uninstall_dir
+uninstall: unlink_file uninstall_file uninstall_dir
 	make -s printtree
 uninstall_dir:
-	rmdir ${AVAILABLE_DIR}
+	-rmdir ${AVAILABLE_DIR}
+	-rmdir ${ENABLED_DIR}
 uninstall_file:
 	rm -fv ${HOMEDIR}/.bashrc.common
 	rm -fv ${AVAILABLE_DIR}/bak
@@ -47,6 +53,12 @@ uninstall_file:
 	rm -fv ${AVAILABLE_DIR}/ssh-agent
 	rm -fv ${AVAILABLE_DIR}/zz-tmux-list-sessions
 .PHONY: u uninstall uninstall_dir uninstall_file
+unlink_file:
+	-rm -fv ${ENABLED_DIR}/bak
+	-rm -fv ${ENABLED_DIR}/cvs
+	-rm -fv ${ENABLED_DIR}/ssh-agent
+	-rm -fv ${ENABLED_DIR}/zz-tmux-list-sessions
+.PHONY: unlink_file
 
 
 #homedir:
