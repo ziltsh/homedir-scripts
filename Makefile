@@ -25,7 +25,7 @@ install: install_dir install_file link_file
 	make -s install_instructions printtree
 install_dir:
 	-${INSTALL} ${I_OPT} -m 0750 -d ${DESTDIR}
-	-${INSTALL} ${I_OPT} -d ${HOMEDIR}
+	#-${INSTALL} ${I_OPT} -d ${HOMEDIR}
 	${INSTALL} ${I_OPT} -m 0750 -d ${AVAILABLE_DIR}
 	${INSTALL} ${I_OPT} -m 0750 -d ${ENABLED_DIR}
 install_file:
@@ -67,7 +67,7 @@ unlink_file:
 
 install_instructions:
 	printf "+ hook-up to the ~/.bashrc script with:\n"
-	printf "\n   [ -r ~/.bashrc.common] && . ~/.bashrc.common\n\n"
+	printf "\n   [ -r ~/.bashrc.common ] && . ~/.bashrc.common\n\n"
 .PHONY: install_instructions
 
 printtree:
