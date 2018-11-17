@@ -3,9 +3,9 @@
 # $Id$
 #
 
-printf "\ntmux sessions list:\n"
-
-tmux list-sessions
-
-printf "\n"
+if [ -d $TMP/$UID ]; then
+	printf "\ntmux sessions list:\n"
+	tmux list-sessions
+	printf "\n"
+fi
 
