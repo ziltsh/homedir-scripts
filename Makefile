@@ -81,6 +81,8 @@ usage:
 	printf "                   {printtree}\n"
 	printf "                   {default|usage}\n"
 	printf "\n"
+	printf "  i.e:  make -s install DESTDIR=testdir\n"
+	printf "\n"
 .PHONY: usage
 
 
