@@ -22,9 +22,9 @@ default:
 
 i: install
 install: install_dir install_file link_file
-	make -s install_instructions printtree
+	make -s user install_instructions printtree
 install_dir:
-	-${INSTALL} ${I_OPT} -m 0750 -d ${DESTDIR}
+	#-${INSTALL} ${I_OPT} -m 0750 -d ${DESTDIR}
 	#-${INSTALL} ${I_OPT} -d ${HOMEDIR}
 	${INSTALL} ${I_OPT} -m 0750 -d ${AVAILABLE_DIR}
 	${INSTALL} ${I_OPT} -m 0750 -d ${ENABLED_DIR}
@@ -65,6 +65,10 @@ unlink_file:
 #	printf "# homedir: %s\n" "${HOMEDIR}"
 #.PHONY: homedir
 
+user:
+	printf "+ user: %s\n" "${USER}"
+.PHONY: user
+
 install_instructions:
 	printf "+ hook-up to the ~/.bashrc script with:\n"
 	printf "\n   [ -r ~/.bashrc.common ] && . ~/.bashrc.common\n\n"
@@ -72,7 +76,8 @@ install_instructions:
 
 printtree:
 	#printf "\n"
-	find ./${DESTDIR} -ls
+	[ -z "${DESTDIR}" ] \
+		|| find ./${DESTDIR} -ls
 .PHONY: printtree
 
 usage:
@@ -81,7 +86,9 @@ usage:
 	printf "                   {printtree}\n"
 	printf "                   {default|usage}\n"
 	printf "\n"
+	printf "  user: %s\n" "${USER}"
 	printf "  i.e:  make -s install DESTDIR=testdir\n"
+	printf "  would install in <destdir>/<user homedir> -> ./home/$USER/testdir\n"
 	printf "\n"
 .PHONY: usage
 
