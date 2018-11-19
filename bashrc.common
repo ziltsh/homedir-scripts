@@ -6,6 +6,10 @@ alias wortel='sudo su -'
 
 [ -r ~/.bashrc.`hostname -s` ] && . ~/.bashsrc.`hostname -s`
 
+alias cp='cp -vi'
+alias mv='mv -vi'
+alias rm='rm -vi'
+
 alias ls='ls -F'
 alias l='ls -lF'
 alias la='ls -laF'
