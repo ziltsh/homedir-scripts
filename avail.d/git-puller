@@ -1,0 +1,15 @@
+#! /bin/bash
+#
+# ~/.bashrc-avail.d/git-puller - git pull local repositories from remote
+#
+
+BASEDIR=~/Workspace
+
+for R in $BASEDIR/*/; do
+	logger -t git -p info "git pull $R"
+	pushd $R >> /dev/null
+	git pull
+	popd >> /dev/null
+done
+
+#.
