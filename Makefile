@@ -7,7 +7,7 @@ MAKEFLAGS =
 #MAKEFLAGS = -s
 
 INSTALL = /usr/bin/install
-I_OPT   = -p
+I_OPT   = -p -v
 
 PKG     = playground
 DESTDIR = debian
@@ -30,12 +30,14 @@ install_dir:
 	${INSTALL} ${I_OPT} -m 0750 -d ${ENABLED_DIR}
 install_file:
 	${INSTALL} bashrc.common ${HOMEDIR}/.bashrc.common
-	${INSTALL} avail.d/bak ${AVAILABLE_DIR}/bak
-	${INSTALL} avail.d/cvs ${AVAILABLE_DIR}/cvs
-	${INSTALL} avail.d/ssh-agent ${AVAILABLE_DIR}/ssh-agent
-	${INSTALL} avail.d/zz-tmux-list-sessions ${AVAILABLE_DIR}/zz-tmux-list-sessions
+	${INSTALL} avail.d/* ${AVAILABLE_DIR}/
+#	${INSTALL} avail.d/bak ${AVAILABLE_DIR}/bak
+#	${INSTALL} avail.d/cvs ${AVAILABLE_DIR}/cvs
+#	${INSTALL} avail.d/ssh-agent ${AVAILABLE_DIR}/ssh-agent
+#	${INSTALL} avail.d/zz-tmux-list-sessions ${AVAILABLE_DIR}/zz-tmux-list-sessions
 link_file:
 	-ln -sv ../.bashrc-avail.d/bak ${ENABLED_DIR}/bak
+	#-ln -sv ../.bashrc-avail.d/git-puller ${ENABLED_DIR}/git-puller
 	-ln -sv ../.bashrc-avail.d/ssh-agent ${ENABLED_DIR}/ssh-agent
 	-ln -sv ../.bashrc-avail.d/zz-tmux-list-sessions ${ENABLED_DIR}/zz-tmux-list-sessions
 .PHONY: i install install_dir install_file
