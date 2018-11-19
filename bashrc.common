@@ -4,7 +4,7 @@
 
 alias wortel='sudo su -'
 
-[ -r ~/.bashrc.`hostname -s` ] && . ~/.bashsrc.`hostname -s`
+[ -r ~/.bashrc.`hostname -s` ] && . ~/.bashrc.`hostname -s`
 
 alias cp='cp -vi'
 alias mv='mv -vi'
