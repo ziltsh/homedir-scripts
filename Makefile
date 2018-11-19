@@ -88,7 +88,7 @@ usage:
 	printf "\n"
 	printf "  user: %s\n" "${USER}"
 	printf "  i.e:  make -s install DESTDIR=testdir\n"
-	printf "  would install in <destdir>/<user homedir> -> ./home/$USER/testdir\n"
+	printf "  would install in <destdir>/<user homedir> -> testdir${HOME}\n"
 	printf "\n"
 .PHONY: usage
 
