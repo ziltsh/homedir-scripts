@@ -7,8 +7,10 @@ BASEDIR=~/Workspace
 
 for R in $BASEDIR/*/; do
 	logger -t git -p info "git pull $R"
+	printf "+ repo %s: " "$(basename $R)"
 	pushd $R >> /dev/null
-	git pull
+	#git pull
+	git fetch
 	popd >> /dev/null
 done
 
