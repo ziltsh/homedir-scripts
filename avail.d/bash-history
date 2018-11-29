@@ -12,7 +12,7 @@ HISTFILESIZE=2000
 HISTCONTROL=ignoredups:ignorespace
 
 # A colon-separated list of patterns used to decide which command lines should be saved on the history list
-HISTIGNORE=shred:mysql -p
+HISTIGNORE=passwd:shred
 
 HISTTIMEFORMAT='%a %Y%m%dt$H$M$S '
 
