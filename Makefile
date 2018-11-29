@@ -75,7 +75,7 @@ user:
 
 install_instructions:
 	printf "+ hook-up to the ~/.bashrc script with:\n"
-	printf "\n   [ -r ~/.bashrc.common ] && . ~/.bashrc.common\n\n"
+	printf "\n[ -r ~/.bashrc.common ] && . ~/.bashrc.common\n\n"
 .PHONY: install_instructions
 
 printtree:
