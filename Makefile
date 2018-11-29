@@ -53,13 +53,18 @@ uninstall_dir:
 uninstall_file:
 	rm -fv ${HOMEDIR}/.bashrc.common
 	rm -fv ${AVAILABLE_DIR}/bak
+	rm -fv ${AVAILABLE_DIR}/bash-history
 	rm -fv ${AVAILABLE_DIR}/cvs
+	rm -fv ${AVAILABLE_DIR}/git
+	rm -fv ${AVAILABLE_DIR}/git-aliases
 	rm -fv ${AVAILABLE_DIR}/ssh-agent
 	rm -fv ${AVAILABLE_DIR}/zz-tmux-list-sessions
 .PHONY: u uninstall uninstall_dir uninstall_file
 unlink_file:
 	-rm -fv ${ENABLED_DIR}/bak
+	-rm -fv ${ENABLED_DIR}/bash-history
 	-rm -fv ${ENABLED_DIR}/cvs
+	-rm -fv ${ENABLED_DIR}/git-aliases
 	-rm -fv ${ENABLED_DIR}/ssh-agent
 	-rm -fv ${ENABLED_DIR}/zz-tmux-list-sessions
 .PHONY: unlink_file
