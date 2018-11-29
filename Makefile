@@ -39,6 +39,7 @@ link_file:
 	-ln -sv ../.bashrc-avail.d/bak ${ENABLED_DIR}/bak
 	-ln -sv ../.bashrc-avail.d/bash-history ${ENABLED_DIR}/bash-history
 #	-ln -sv ../.bashrc-avail.d/git ${ENABLED_DIR}/git
+	-ln -sv ../.bashrc-avail.d/git-aliases ${ENABLED_DIR}/git-aliases
 	-ln -sv ../.bashrc-avail.d/ssh-agent ${ENABLED_DIR}/ssh-agent
 	-ln -sv ../.bashrc-avail.d/zz-tmux-list-sessions ${ENABLED_DIR}/zz-tmux-list-sessions
 .PHONY: i install install_dir install_file
