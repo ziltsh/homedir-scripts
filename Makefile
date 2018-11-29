@@ -37,7 +37,8 @@ install_file:
 #	${INSTALL} ${I_OPT} avail.d/zz-tmux-list-sessions ${AVAILABLE_DIR}/zz-tmux-list-sessions
 link_file:
 	-ln -sv ../.bashrc-avail.d/bak ${ENABLED_DIR}/bak
-	#-ln -sv ../.bashrc-avail.d/git-puller ${ENABLED_DIR}/git-puller
+	-ln -sv ../.bashrc-avail.d/bash-history ${ENABLED_DIR}/bash-history
+#	-ln -sv ../.bashrc-avail.d/git ${ENABLED_DIR}/git
 	-ln -sv ../.bashrc-avail.d/ssh-agent ${ENABLED_DIR}/ssh-agent
 	-ln -sv ../.bashrc-avail.d/zz-tmux-list-sessions ${ENABLED_DIR}/zz-tmux-list-sessions
 .PHONY: i install install_dir install_file
