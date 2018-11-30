@@ -3,7 +3,7 @@
 # $Id$
 #
 
-if [ -d /tmp/$UID ]; then
+if [ -d /tmp/tmux-$UID ]; then
 	printf "\ntmux sessions list:\n"
 	tmux list-sessions
 	printf "\n"
