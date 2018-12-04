@@ -39,7 +39,8 @@ install_file:
 link_file:
 	-ln -sv ../.bashrc-avail.d/bak ${ENABLED_DIR}/bak
 	-ln -sv ../.bashrc-avail.d/bash-history ${ENABLED_DIR}/bash-history
-	#-ln -sv ../.bashrc-avail.d/git-puller ${ENABLED_DIR}/git-puller
+#	-ln -sv ../.bashrc-avail.d/git ${ENABLED_DIR}/git
+	-ln -sv ../.bashrc-avail.d/git-aliases ${ENABLED_DIR}/git-aliases
 	-ln -sv ../.bashrc-avail.d/ssh-agent ${ENABLED_DIR}/ssh-agent
 	-ln -sv ../.bashrc-avail.d/zz-tmux-list-sessions ${ENABLED_DIR}/zz-tmux-list-sessions
 .PHONY: i install install_dir install_file
@@ -55,12 +56,16 @@ uninstall_file:
 	rm -fv ${AVAILABLE_DIR}/bak
 	rm -fv ${AVAILABLE_DIR}/bash-history
 	rm -fv ${AVAILABLE_DIR}/cvs
+	rm -fv ${AVAILABLE_DIR}/git
+	rm -fv ${AVAILABLE_DIR}/git-aliases
 	rm -fv ${AVAILABLE_DIR}/ssh-agent
 	rm -fv ${AVAILABLE_DIR}/zz-tmux-list-sessions
 .PHONY: u uninstall uninstall_dir uninstall_file
 unlink_file:
 	-rm -fv ${ENABLED_DIR}/bak
+	-rm -fv ${ENABLED_DIR}/bash-history
 	-rm -fv ${ENABLED_DIR}/cvs
+	-rm -fv ${ENABLED_DIR}/git-aliases
 	-rm -fv ${ENABLED_DIR}/ssh-agent
 	-rm -fv ${ENABLED_DIR}/zz-tmux-list-sessions
 .PHONY: unlink_file
@@ -76,7 +81,7 @@ user:
 
 install_instructions:
 	printf "+ hook-up to the ~/.bashrc script with:\n"
-	printf "\n   [ -r ~/.bashrc.common ] && . ~/.bashrc.common\n\n"
+	printf "\n[ -r ~/.bashrc.common ] && . ~/.bashrc.common\n\n"
 .PHONY: install_instructions
 
 printtree:
