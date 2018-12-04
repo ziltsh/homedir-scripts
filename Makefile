@@ -30,6 +30,7 @@ install_dir:
 	${INSTALL} ${I_OPT} -m 0750 -d ${ENABLED_DIR}
 install_file:
 	${INSTALL} ${I_OPT} bashrc.common ${HOMEDIR}/.bashrc.common
+	${INSTALL} ${I_OPT} vimrc ${HOMEDIR}/.vimrc
 	${INSTALL} ${I_OPT} avail.d/* ${AVAILABLE_DIR}/
 #	${INSTALL} ${I_OPT} avail.d/bak ${AVAILABLE_DIR}/bak
 #	${INSTALL} ${I_OPT} avail.d/cvs ${AVAILABLE_DIR}/cvs
@@ -37,6 +38,7 @@ install_file:
 #	${INSTALL} ${I_OPT} avail.d/zz-tmux-list-sessions ${AVAILABLE_DIR}/zz-tmux-list-sessions
 link_file:
 	-ln -sv ../.bashrc-avail.d/bak ${ENABLED_DIR}/bak
+	-ln -sv ../.bashrc-avail.d/bash-history ${ENABLED_DIR}/bash-history
 	#-ln -sv ../.bashrc-avail.d/git-puller ${ENABLED_DIR}/git-puller
 	-ln -sv ../.bashrc-avail.d/ssh-agent ${ENABLED_DIR}/ssh-agent
 	-ln -sv ../.bashrc-avail.d/zz-tmux-list-sessions ${ENABLED_DIR}/zz-tmux-list-sessions
@@ -51,6 +53,7 @@ uninstall_dir:
 uninstall_file:
 	rm -fv ${HOMEDIR}/.bashrc.common
 	rm -fv ${AVAILABLE_DIR}/bak
+	rm -fv ${AVAILABLE_DIR}/bash-history
 	rm -fv ${AVAILABLE_DIR}/cvs
 	rm -fv ${AVAILABLE_DIR}/ssh-agent
 	rm -fv ${AVAILABLE_DIR}/zz-tmux-list-sessions

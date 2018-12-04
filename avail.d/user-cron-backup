@@ -1,0 +1,29 @@
+#! /bin/bash
+#
+# user-cron-backup
+#
+
+FILE="$HOME/.crontabrc"
+
+function BackupUserCrontabs () {
+	local file="$1"
+	# check for previous backup
+	if [ ! -r "$file" ]; then
+		# no backup yet, create one
+		#printf "+ Create a first backup\n"
+		crontab -l > $file
+		return $?
+	fi
+	# compare with previous backup
+	crontab -l | diff $FILE - #>> /dev/null
+	if [ 0$? -ne 0 ]; then
+		# current crontabs and backup diver, create new backup
+		#printf "+ making a new backup\n"
+		crontab -l > $FILE
+	fi
+	return $?
+}
+
+BackupUserCrontabs $FILE
+
+#.
