@@ -5,9 +5,10 @@
 
 MAKEFLAGS = 
 #MAKEFLAGS = -s
+TODAY   = `date '+%Y%m%d'`
 
 INSTALL = /usr/bin/install
-I_OPT   = -p -v
+I_OPT   = -p -v --suffix=.bak${TODAY} -b
 
 PKG     = playground
 DESTDIR = debian
@@ -17,6 +18,7 @@ AVAILABLE_DIR =	${DESTDIR}/${HOME}/.bashrc-avail.d
 ENABLED_DIR = ${DESTDIR}/${HOME}/.bashrc-enabled.d
 
 default:
+	printf "today is %s\n" "${TODAY}"
 	make -s usage
 .PHONY: default
 
@@ -43,6 +45,7 @@ link_file:
 	-ln -sv ../.bashrc-avail.d/dimmer ${ENABLED_DIR}/dimmer
 	-ln -sv ../.bashrc-avail.d/git-aliases ${ENABLED_DIR}/git-aliases
 	-ln -sv ../.bashrc-avail.d/ssh-agent ${ENABLED_DIR}/ssh-agent
+	-ln -sv ../.bashrc-avail.d/user-cron-backup ${ENABLED_DIR}/user-cron-backup
 	-ln -sv ../.bashrc-avail.d/zz-tmux-list-sessions ${ENABLED_DIR}/zz-tmux-list-sessions
 .PHONY: i install install_dir install_file
 
@@ -54,6 +57,7 @@ uninstall_dir:
 	-rmdir ${ENABLED_DIR}
 uninstall_file:
 	rm -fv ${HOMEDIR}/.bashrc.common
+	rm -fv ${HOMEDIR}/.vimrc
 	rm -fv ${AVAILABLE_DIR}/bak
 	rm -fv ${AVAILABLE_DIR}/bash-history
 	rm -fv ${AVAILABLE_DIR}/cvs
@@ -61,6 +65,7 @@ uninstall_file:
 	rm -fv ${AVAILABLE_DIR}/git
 	rm -fv ${AVAILABLE_DIR}/git-aliases
 	rm -fv ${AVAILABLE_DIR}/ssh-agent
+	rm -fv ${AVAILABLE_DIR}/user-cron-backup
 	rm -fv ${AVAILABLE_DIR}/zz-tmux-list-sessions
 .PHONY: u uninstall uninstall_dir uninstall_file
 unlink_file:
@@ -70,6 +75,7 @@ unlink_file:
 	-rm -fv ${ENABLED_DIR}/dimmer
 	-rm -fv ${ENABLED_DIR}/git-aliases
 	-rm -fv ${ENABLED_DIR}/ssh-agent
+	-rm -fv ${ENABLED_DIR}/user-cron-backup
 	-rm -fv ${ENABLED_DIR}/zz-tmux-list-sessions
 .PHONY: unlink_file
 
