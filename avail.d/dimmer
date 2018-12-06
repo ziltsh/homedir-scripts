@@ -1,0 +1,5 @@
+#! /bin/bash
+#
+# dimmer hook
+#
+[ -x ~/.bashrc-avail.d/dimmer ] && dimmer
