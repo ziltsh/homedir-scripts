@@ -2,4 +2,4 @@
 #
 # dimmer hook
 #
-[ -x ~/.bashrc-avail.d/dimmer ] && dimmer
+[ -x ~/bin/dimmer ] && ~/bin/dimmer
