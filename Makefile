@@ -14,6 +14,7 @@ PKG     = playground
 DESTDIR = debian
 # from the environment, hopefully the users homedir
 HOMEDIR = ${DESTDIR}${HOME}
+BIN_DIR = ${DESTDIR}/${HOME}/bin
 AVAILABLE_DIR =	${DESTDIR}/${HOME}/.bashrc-avail.d
 ENABLED_DIR = ${DESTDIR}/${HOME}/.bashrc-enabled.d
 
@@ -28,11 +29,13 @@ install: install_dir install_file link_file
 install_dir:
 	#-${INSTALL} ${I_OPT} -m 0750 -d ${DESTDIR}
 	#-${INSTALL} ${I_OPT} -d ${HOMEDIR}
+	-${INSTALL} ${I_OPT} -d ${BIN_DIR}
 	${INSTALL} ${I_OPT} -m 0750 -d ${AVAILABLE_DIR}
 	${INSTALL} ${I_OPT} -m 0750 -d ${ENABLED_DIR}
 install_file:
 	${INSTALL} ${I_OPT} bashrc.common ${HOMEDIR}/.bashrc.common
 	${INSTALL} ${I_OPT} vimrc ${HOMEDIR}/.vimrc
+	${INSTALL} ${I_OPT} git-puller ${BIN_DIR}/
 	${INSTALL} ${I_OPT} avail.d/* ${AVAILABLE_DIR}/
 #	${INSTALL} ${I_OPT} avail.d/bak ${AVAILABLE_DIR}/bak
 #	${INSTALL} ${I_OPT} avail.d/cvs ${AVAILABLE_DIR}/cvs
@@ -53,6 +56,7 @@ u: uninstall
 uninstall: unlink_file uninstall_file uninstall_dir
 	make -s printtree
 uninstall_dir:
+	-rmdir ${BIN_DIR}
 	-rmdir ${AVAILABLE_DIR}
 	-rmdir ${ENABLED_DIR}
 uninstall_file:
@@ -67,6 +71,7 @@ uninstall_file:
 	rm -fv ${AVAILABLE_DIR}/ssh-agent
 	rm -fv ${AVAILABLE_DIR}/user-cron-backup
 	rm -fv ${AVAILABLE_DIR}/zz-tmux-list-sessions
+	rm -fv ${BIN_DIR}/git-puller
 .PHONY: u uninstall uninstall_dir uninstall_file
 unlink_file:
 	-rm -fv ${ENABLED_DIR}/bak

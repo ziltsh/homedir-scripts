@@ -5,12 +5,14 @@
 
 BASEDIR=~/Workspace
 
+ACTION=${1:-fetch}
+#ACTION=${1:-pull}
+
 for R in $BASEDIR/*/; do
 	logger -t git -p info "git pull $R"
-	printf "+ repo %s: " "$(basename $R)"
+	printf "+ repo %s:\n" "$(basename $R)"
 	pushd $R >> /dev/null
-	#git pull
-	git fetch
+	git $ACTION
 	popd >> /dev/null
 done
 
