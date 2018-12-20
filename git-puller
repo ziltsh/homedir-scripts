@@ -12,6 +12,7 @@ for R in $BASEDIR/*/; do
 	logger -t git -p info "git pull $R"
 	printf "+ repo %s:\n" "$(basename $R)"
 	pushd $R >> /dev/null
+	git remote -v
 	git $ACTION
 	popd >> /dev/null
 done
