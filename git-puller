@@ -3,6 +3,8 @@
 # ~/.bashrc-avail.d/git-puller - git pull local repositories from remote
 #
 
+set -u
+
 BASEDIR=~/Workspace
 
 ACTION=${1:-fetch}
