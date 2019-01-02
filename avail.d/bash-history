@@ -14,6 +14,6 @@ HISTCONTROL=ignoredups:ignorespace
 # A colon-separated list of patterns used to decide which command lines should be saved on the history list
 HISTIGNORE=passwd:shred
 
-HISTTIMEFORMAT='%a %Y%m%dt$H$M$S '
+HISTTIMEFORMAT='%a %Y%m%dt%H%M%S '
 
 #.
