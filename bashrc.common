@@ -15,4 +15,5 @@ alias l='ls -lF'
 alias la='ls -laF'
 alias ll='ls -lAF'
 
+[ -d ~/bin ] && export "PATH=$PATH:~/bin"
 [ -d ~/.bashrc-enabled.d ] && for F in ~/.bashrc-enabled.d/*; do source $F; done
