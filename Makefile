@@ -37,17 +37,12 @@ install_file:
 	${INSTALL} ${I_OPT} vimrc ${HOMEDIR}/.vimrc
 	${INSTALL} ${I_OPT} git-puller ${BIN_DIR}/
 	${INSTALL} ${I_OPT} avail.d/* ${AVAILABLE_DIR}/
-#	${INSTALL} ${I_OPT} avail.d/bak ${AVAILABLE_DIR}/bak
-#	${INSTALL} ${I_OPT} avail.d/cvs ${AVAILABLE_DIR}/cvs
-#	${INSTALL} ${I_OPT} avail.d/ssh-agent ${AVAILABLE_DIR}/ssh-agent
-#	${INSTALL} ${I_OPT} avail.d/zz-tmux-list-sessions ${AVAILABLE_DIR}/zz-tmux-list-sessions
 link_file:
 	-ln -sv ../.bashrc-avail.d/bak ${ENABLED_DIR}/bak
 	-ln -sv ../.bashrc-avail.d/bash-history ${ENABLED_DIR}/bash-history
-#	-ln -sv ../.bashrc-avail.d/git ${ENABLED_DIR}/git
 	-ln -sv ../.bashrc-avail.d/dimmer ${ENABLED_DIR}/dimmer
 	-ln -sv ../.bashrc-avail.d/git-aliases ${ENABLED_DIR}/git-aliases
-	-ln -sv ../.bashrc-avail.d/ssh-agent ${ENABLED_DIR}/ssh-agent
+#	-ln -sv ../.bashrc-avail.d/ssh-agent ${ENABLED_DIR}/ssh-agent
 	-ln -sv ../.bashrc-avail.d/user-cron-backup ${ENABLED_DIR}/user-cron-backup
 	-ln -sv ../.bashrc-avail.d/zz-tmux-list-sessions ${ENABLED_DIR}/zz-tmux-list-sessions
 .PHONY: i install install_dir install_file
