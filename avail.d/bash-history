@@ -16,4 +16,6 @@ HISTIGNORE=passwd:shred
 
 HISTTIMEFORMAT='%a %Y%m%dt%H%M%S '
 
+PROMPT_COMMAND='history -a'
+
 #.
