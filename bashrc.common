@@ -15,5 +15,16 @@ alias l='ls -lF'
 alias la='ls -laF'
 alias ll='ls -lAF'
 
+function lsswap () {
+	awk '
+/^Name/ { printf "%s", $2 }
+/^Pid/ { printf " (%s)", $2 }
+/^VmSwap/ { printf " %s%s\n", $2, $3 }
+' /proc/[0-9]*/status \
+		| awk '{ printf "%-24s  %0d %s\n", $1" "$2, $3 }' \
+		| sort -nk3 -r
+	return $?
+}
+
 [ -d ~/bin ] && export "PATH=$PATH:~/bin"
 [ -d ~/.bashrc-enabled.d ] && for F in ~/.bashrc-enabled.d/*; do source $F; done
