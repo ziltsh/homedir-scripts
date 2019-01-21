@@ -12,8 +12,9 @@ ACTION=${1:-fetch}
 
 for R in $BASEDIR/*/; do
 	logger -t git -p info "git pull $R"
-	printf "+---\n"
-	printf "+ repo %s:\n" "$(basename $R)"
+#	printf "+---\n"
+#	printf "+ repo %s:\n" "$(basename $R)"
+	printf "+--- %+59s repository ---+\n" "$(basename $R)"
 	pushd $R >> /dev/null
 	git status
 	git remote -v
