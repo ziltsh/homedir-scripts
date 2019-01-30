@@ -1,0 +1,6 @@
+#
+# ~/.bashrc-avail.d/opserve - aliases at work
+#
+
+alias salt='sudo salt --verbose --state-verbose=True'
+
