@@ -2,5 +2,9 @@
 # ~/.bashrc-avail.d/opserve - aliases at work
 #
 
-alias salt='sudo salt --verbose --state-verbose=True'
+#alias salt='sudo salt --verbose --state-verbose=True'
+alias salt='sudo salt --verbose'
+alias compare-new-salt-deploy-with-current-state.sh='sudo /usr/local/bin/compare-new-salt-deploy-with-current-state.sh'
+alias extract-new-salt_deploy.sh='sudo /usr/local/bin/extract-new-salt_deploy.sh'
 
+#.
