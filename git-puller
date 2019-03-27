@@ -18,7 +18,9 @@ for R in $BASEDIR/*/; do
 	pushd $R >> /dev/null
 	git status
 	git remote -v
-	git $ACTION
+	for R in $(git remote -v | awk '{print $1}' | sort | uniq); do
+		git $ACTION -v $R
+	done
 	popd >> /dev/null
 done
 
