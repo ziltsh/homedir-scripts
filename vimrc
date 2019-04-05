@@ -18,7 +18,7 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 "set expandtab
 set noexpandtab			" donot convert tab to spaces
-" forcefully recreate tabs
+" forcefully recreate spaces
 "retab
 
 ".
