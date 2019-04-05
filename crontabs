@@ -1,0 +1,2 @@
+* * * * * [ ~/myfortunes -nt ~/myfortunes.dat ] && strfile ~/myfortunes
+* * * * * [ ~/myfortunes.music -nt ~/myfortunes.music.dat ] && strfile ~/myfortunes.music
