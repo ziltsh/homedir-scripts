@@ -13,6 +13,8 @@ set background=dark
 set hlsearch
 set diffopt+=iwhite
 set autoindent			" does the right thing (mostly) in programs
+set ruler				" this makes vim show the current row and column at the bottom
+						" right of the screen.
 
 "filetype plugin indent on
 set tabstop=4			" show existing tab with 4 spaces width
