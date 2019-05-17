@@ -4,7 +4,7 @@
 
 HISTSIZE=4999
 
-HISTFILE=/home/niels/.bash_history
+HISTFILE=$HOME/.bash_history
 
 HISTFILESIZE=9999
 
