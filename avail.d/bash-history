@@ -2,11 +2,11 @@
 # ~/.bashrc-available.d/bash-history
 #
 
-HISTSIZE=4999
+HISTSIZE=19999
 
 HISTFILE=$HOME/.bash_history
 
-HISTFILESIZE=9999
+HISTFILESIZE=19999
 
 #HISTCONTROL=ignoreboth
 HISTCONTROL=ignoredups:ignorespace
