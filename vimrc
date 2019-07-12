@@ -17,6 +17,7 @@ set ruler				" this makes vim show the current row and column at the bottom
 						" right of the screen.
 
 "filetype plugin indent on
+set textwidth=76
 set tabstop=4			" show existing tab with 4 spaces width
 set shiftwidth=4		" when indenting with '>', use 4 spaces width
 set expandtab			" On pressing tab, insert 4 spaces
