@@ -109,6 +109,7 @@ usage:
 	printf "  i.e:  make -s install DESTDIR=testdir\n"
 	printf "  would install in <destdir>/<user homedir> -> testdir${HOME}\n"
 	printf "\n"
+	make -s user install_instructions printtree
 .PHONY: usage
 
 
