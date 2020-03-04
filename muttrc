@@ -1,0 +1,11 @@
+#
+# ~/.muttrc - customizations for Mutt
+#
+
+# set pager_context=0
+set pager_context=5
+
+# set pager_index_lines=0
+set pager_index_lines=8
+
+#.
