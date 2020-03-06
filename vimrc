@@ -20,8 +20,8 @@ set ruler				" this makes vim show the current row and column at the bottom
 set textwidth=76
 set tabstop=4			" show existing tab with 4 spaces width
 set shiftwidth=4		" when indenting with '>', use 4 spaces width
-set expandtab			" On pressing tab, insert 4 spaces
-"set noexpandtab			" donot convert tab to spaces
+"set expandtab			" On pressing tab, insert 4 spaces
+set noexpandtab			" donot convert tab to spaces
 "retab					" forcefully recreate spaces
 
 set wrapmargin=6		" This is the number of characters from the right
