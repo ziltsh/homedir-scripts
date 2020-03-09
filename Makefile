@@ -34,6 +34,7 @@ install_dir:
 	${INSTALL} ${I_OPT} -m 0750 -d ${ENABLED_DIR}
 install_file:
 	${INSTALL} ${I_OPT} bashrc.common ${HOMEDIR}/.bashrc.common
+	${INSTALL} ${I_OPT} muttrc ${HOMEDIR}/.muttrc
 	${INSTALL} ${I_OPT} vimrc ${HOMEDIR}/.vimrc
 	${INSTALL} ${I_OPT} git-puller ${BIN_DIR}/
 	${INSTALL} ${I_OPT} avail.d/* ${AVAILABLE_DIR}/
@@ -56,6 +57,7 @@ uninstall_dir:
 	-rmdir ${ENABLED_DIR}
 uninstall_file:
 	rm -fv ${HOMEDIR}/.bashrc.common
+	rm -fv ${HOMEDIR}/.muttrc
 	rm -fv ${HOMEDIR}/.vimrc
 	rm -fv ${AVAILABLE_DIR}/bak
 	rm -fv ${AVAILABLE_DIR}/bash-history
