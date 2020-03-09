@@ -1,0 +1,9 @@
+#
+# git-customizations-backup
+#
+
+FILE=~/.gitconfig.bak`date '+%y%m%d'`.gz
+
+[ -e "$FILE" ] || git config --list | gzip -c > "$FILE"
+
+#.
