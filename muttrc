@@ -1,11 +1,30 @@
 #
 # ~/.muttrc - customizations for Mutt
 #
+# try:
+#   $ vimdiff muttrc /usr/share/doc/mutt/examples/Muttrc.gz
+#
+
+
+# Handler for gzip compressed mailboxes
+# open-hook   '\.gz$'  "gzip -cd  '%f' >  '%t'"
+# close-hook  '\.gz$'  "gzip -c   '%t' >  '%f'"
+# append-hook '\.gz$'  "gzip -c   '%t' >> '%f'"
+#
+open-hook   '\.gz$'  "gzip -cd  '%f' >  '%t'"
+close-hook  '\.gz$'  "gzip -c   '%t' >  '%f'"
+append-hook '\.gz$'  "gzip -c   '%t' >> '%f'"
+
+# set confirmappend=yes
+set confirmappend=no
+
 
 # set pager_context=0
+# set pager_context=5
 set pager_context=5
 
 # set pager_index_lines=0
+# set pager_index_lines=8
 set pager_index_lines=8
 
 #.
