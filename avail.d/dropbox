@@ -1,0 +1,10 @@
+#
+# dropbox initialization scriptlet
+#
+
+CMD="~/.dropbox-dist/dropboxd"
+
+[ -x "$CMD" ] || "$CMD" &
+
+
+#.
