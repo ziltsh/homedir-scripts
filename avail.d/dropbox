@@ -2,9 +2,9 @@
 # dropbox initialization scriptlet
 #
 
-CMD="~/.dropbox-dist/dropboxd"
+CMD="$HOME/.dropbox-dist/dropboxd"
 
-[ -x "$CMD" ] || "$CMD" &
+[ -x "$CMD" -a 0`ps xf | grep -c 'dropbox$'` -lt 1 ] && "$CMD" &
 
 
 #.
