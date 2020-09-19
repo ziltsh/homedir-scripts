@@ -4,7 +4,8 @@
 
 CMD="$HOME/.dropbox-dist/dropboxd"
 
-[ -x "$CMD" -a 0`ps xf | grep -c 'dropbox$'` -lt 1 ] && "$CMD" &
+# if executable, if not running (one would be this script), than execute
+[ -x "$CMD" -a 0`ps xf | grep -c 'dropbox$'` -lt 2 ] && "$CMD" &
 
 
 #.
