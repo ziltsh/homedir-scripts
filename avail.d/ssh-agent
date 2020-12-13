@@ -5,14 +5,26 @@
 # another strategy (http://unix.stackexchange.com/questions/90853/how-can-i-run-ssh-add-automatically-without-password-prompt)
 #
 
+SSH_ADD_OPT='-t23h59m'
+
 # start agent if none running
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+	printf "+ Initialize ssh-agent\n"
 	eval `ssh-agent`
 	ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 
 # if no keys, add some
-ssh-add -l | grep "The agent has no identities" \
-	&& ssh-add -t23h59m `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`
+#ssh-add -l | grep "The agent has no identities" \
+#	&& ssh-add $SSH_ADD_OPT `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`
+
+# find keys and check with ssh-agent if they are attached to its keyring
+for K in `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`; do
+	if [ `ssh-add -l | grep -c $(basename $K)` -eq 0 ]; then
+		ssh-add $SSH_ADD_OPT $K
+	else
+		printf "Key '%s' always attached to keyring\n"
+	fi
+done
 
