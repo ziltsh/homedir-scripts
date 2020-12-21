@@ -19,12 +19,19 @@ export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 #ssh-add -l | grep "The agent has no identities" \
 #	&& ssh-add $SSH_ADD_OPT `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`
 
-# find keys and check with ssh-agent if they are attached to its keyring
-for K in `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`; do
-	if [ `ssh-add -l | grep -c $(basename $K)` -eq 0 ]; then
-		ssh-add $SSH_ADD_OPT $K
-	else
-		printf "Key '%s' always attached to keyring\n"
-	fi
-done
+if [ 0`ssh-add -l | grep -c "The agent has no identities"` -eq 1 ]; then
+	# keyring is empty, load all keys
+	ssh-add $SSH_ADD_OPT `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`
+else
+	# find keys and check each is present on the ssh-agent keyring
+	for K in `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`; do
+		if [ `ssh-add -l | grep -c $(basename $K)` -eq 0 ]; then
+			ssh-add $SSH_ADD_OPT $K
+		else
+			printf "Key '%s' always attached to keyring\n"
+		fi
+	done
+fi
 
+
+#.
