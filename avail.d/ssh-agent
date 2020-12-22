@@ -25,10 +25,10 @@ if [ 0`ssh-add -l | grep -c "The agent has no identities"` -eq 1 ]; then
 else
 	# find keys and check each is present on the ssh-agent keyring
 	for K in `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`; do
-		if [ `ssh-add -l | grep -c $(basename $K)` -eq 0 ]; then
+		if [ 0`ssh-add -l | grep -c $(basename $K)` -eq 0 ]; then
 			ssh-add $SSH_ADD_OPT $K
 		else
-			printf "Key '%s' always attached to keyring\n"
+			printf "Key '%s' already attached to keyring\n" "$K"
 		fi
 	done
 fi
