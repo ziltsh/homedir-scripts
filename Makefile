@@ -37,6 +37,7 @@ install_file:
 	${INSTALL} ${I_OPT} muttrc ${HOMEDIR}/.muttrc
 	${INSTALL} ${I_OPT} vimrc ${HOMEDIR}/.vimrc
 	${INSTALL} ${I_OPT} git-puller ${BIN_DIR}/
+	${INSTALL} ${I_OPT} ssh-add-with-filepath ${BIN_DIR}/
 	${INSTALL} ${I_OPT} avail.d/* ${AVAILABLE_DIR}/
 link_file:
 	-ln -sv ../.bashrc-avail.d/bak ${ENABLED_DIR}/bak
@@ -63,12 +64,15 @@ uninstall_file:
 	rm -fv ${AVAILABLE_DIR}/bash-history
 	rm -fv ${AVAILABLE_DIR}/cvs
 	rm -fv ${AVAILABLE_DIR}/dimmer
+	rm -fv ${AVAILABLE_DIR}/dropbox
 	rm -fv ${AVAILABLE_DIR}/git
 	rm -fv ${AVAILABLE_DIR}/git-aliases
+	rm -fv ${AVAILABLE_DIR}/git-customizations-backup
 	rm -fv ${AVAILABLE_DIR}/ssh-agent
 	rm -fv ${AVAILABLE_DIR}/user-cron-backup
 	rm -fv ${AVAILABLE_DIR}/zz-tmux-list-sessions
 	rm -fv ${BIN_DIR}/git-puller
+	rm -fv ${BIN_DIR}/ssh-add-with-filepath
 .PHONY: u uninstall uninstall_dir uninstall_file
 unlink_file:
 	-rm -fv ${ENABLED_DIR}/bak
