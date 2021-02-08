@@ -1,8 +1,11 @@
 #
 # ~/.bashrc-avail.d/ssh-agent
-# $Id$
 #
-# another strategy (http://unix.stackexchange.com/questions/90853/how-can-i-run-ssh-add-automatically-without-password-prompt)
+# another strategy
+# (http://unix.stackexchange.com/questions/90853/how-can-i-run-ssh-add-automatically-without-password-prompt)
+#
+# On debian testing `ssh-add -l` reveals file paths.  on debian stable it
+# shows sha256 fingerprints in stead.
 #
 
 SSH_ADD_OPT='-t23h59m'
@@ -19,19 +22,34 @@ export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 #ssh-add -l | grep "The agent has no identities" \
 #	&& ssh-add $SSH_ADD_OPT `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`
 
+# if no keys, add some
 if [ 0`ssh-add -l | grep -c "The agent has no identities"` -eq 1 ]; then
 	# keyring is empty, load all keys
-	ssh-add $SSH_ADD_OPT `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`
+	#ssh-add $SSH_ADD_OPT `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`
+	find ~/.ssh \
+		-type f \
+		-name id_\* -and \
+		-not -name id_\*.pub \
+		-exec ssh-add $SSH_ADD_OPT {} \;
 else
 	# find keys and check each is present on the ssh-agent keyring
 	for K in `find ~/.ssh -type f -name id_\* -and -not -name id_\*.pub`; do
-		if [ 0`ssh-add -l | grep -c $(basename $K)` -eq 0 ]; then
+		if [ 0`ssh-add -l | grep -c "$(basename $K) "` -eq 0 ]; then
+			# evaluate key presence by file path, include the space after
+			# path in regexp to propperly end the file path
+			ssh-add $SSH_ADD_OPT $K
+		elif [ 0`ssh-add -l | grep -c "$(ssh-keygen -lf $K -E sha256 | awk '-F[ :]' '{print $3}')"` -eq 0 ]; then
+			# evaluate key presence by fingerprint
 			ssh-add $SSH_ADD_OPT $K
 		else
 			printf "Key '%s' already attached to keyring\n" "$K"
 		fi
 	done
 fi
+
+printf "+ present keys:\n"
+ssh-add -l
+echo
 
 
 #.
