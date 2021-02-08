@@ -38,9 +38,9 @@ else
 			# evaluate key presence by file path, include the space after
 			# path in regexp to propperly end the file path
 			ssh-add $SSH_ADD_OPT $K
-		elif [ 0`ssh-add -l | grep -c "$(ssh-keygen -lf $K -E sha256 | awk '-F[ :]' '{print $3}')"` -eq 0 ]; then
-			# evaluate key presence by fingerprint
-			ssh-add $SSH_ADD_OPT $K
+#		elif [ 0`ssh-add -l | grep -c "$(ssh-keygen -lf $K -E sha256 | awk '-F[ :]' '{print $3}')"` -eq 0 ]; then
+#			# evaluate key presence by fingerprint
+#			ssh-add $SSH_ADD_OPT $K
 		else
 			printf "Key '%s' already attached to keyring\n" "$K"
 		fi
